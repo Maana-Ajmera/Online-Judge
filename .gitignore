@@ -1,0 +1,25 @@
+# Node modules
+backend/node_modules/
+frontend/node_modules/
+
+# Build output (frontend)
+frontend/dist/
+frontend/.vite/
+frontend/.vite-temp/
+
+# Logs
+*.log
+logs/
+
+# OS and editor files
+.DS_Store
+.vscode/
+.idea/
+
+# Environment files (if you add them)
+.env
+backend/.env
+frontend/.env
+
+# Script for dropping index (can be deleted after use)
+backend/drop-username-index.js 
