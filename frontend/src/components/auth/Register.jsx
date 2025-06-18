@@ -10,6 +10,7 @@ const Register = () => {
     email: "",
     password: "",
     confirmPassword: "",
+    leetcodeProfile: "",
   });
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -57,6 +58,10 @@ const Register = () => {
       newErrors.confirmPassword = "Passwords do not match";
     }
 
+    if (!formData.leetcodeProfile) {
+      newErrors.leetcodeProfile = "LeetCode Profile is required";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -90,7 +95,8 @@ const Register = () => {
       const result = await register(
         formData.username,
         formData.email,
-        formData.password
+        formData.password,
+        formData.leetcodeProfile
       );
       if (result.success) {
         navigate("/login");
@@ -174,6 +180,23 @@ const Register = () => {
             />
             {errors.confirmPassword && (
               <span className="error-text">{errors.confirmPassword}</span>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="leetcodeProfile">LeetCode Profile</label>
+            <input
+              type="text"
+              id="leetcodeProfile"
+              name="leetcodeProfile"
+              value={formData.leetcodeProfile}
+              onChange={handleChange}
+              className={errors.leetcodeProfile ? "error" : ""}
+              placeholder="Enter your LeetCode username"
+              disabled={isSubmitting}
+            />
+            {errors.leetcodeProfile && (
+              <span className="error-text">{errors.leetcodeProfile}</span>
             )}
           </div>
 

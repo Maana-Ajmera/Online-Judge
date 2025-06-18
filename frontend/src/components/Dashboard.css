@@ -150,3 +150,196 @@
   font-size: 1.2em;
   color: #555;
 }
+
+/* Glassmorphic, neon, and gradient dashboard styles */
+.dashboard-glass-bg {
+  min-height: 100vh;
+  display: flex;
+  background: linear-gradient(120deg, #181c2f 0%, #2a225a 100%);
+  position: relative;
+}
+
+.dashboard-sidebar {
+  width: 220px;
+  background: rgba(24, 28, 47, 0.85);
+  backdrop-filter: blur(12px);
+  box-shadow: 2px 0 24px 0 rgba(40, 0, 80, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 32px 0 0 0;
+  z-index: 2;
+}
+
+.sidebar-logo {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin: 0 0 32px 32px;
+  text-shadow: 0 0 12px #6c63ff;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 32px;
+  color: #b0b3c7;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 8px 0 0 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.sidebar-nav-item.active,
+.sidebar-nav-item:hover {
+  background: linear-gradient(90deg, #6c63ff 0%, #3a2ea7 100%);
+  color: #fff;
+  box-shadow: 0 0 16px #6c63ff55;
+}
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.dashboard-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 28px 40px 0 40px;
+  background: transparent;
+}
+.topbar-title {
+  color: #fff;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px #6c63ff99;
+}
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.topbar-user {
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  background: rgba(108, 99, 255, 0.15);
+  padding: 6px 16px;
+  border-radius: 20px;
+  margin-right: 8px;
+}
+.topbar-btn {
+  background: #6c63ff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  cursor: pointer;
+  box-shadow: 0 0 12px #6c63ff55;
+  transition: background 0.2s;
+}
+.topbar-btn:hover {
+  background: #3a2ea7;
+}
+
+.dashboard-content-area {
+  flex: 1;
+  padding: 40px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.dashboard-main-content {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+}
+.dashboard-main-content h1 {
+  color: #fff;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 0;
+  text-shadow: 0 0 18px #6c63ff99;
+}
+.dashboard-main-content h3 {
+  color: #b0b3c7;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.code-editor-glass {
+  width: 100%;
+  max-width: 700px;
+  background: rgba(30, 30, 60, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 0 32px #6c63ff55, 0 2px 24px #000a;
+  padding: 0 0 24px 0;
+  margin-top: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.code-editor-header {
+  background: linear-gradient(90deg, #6c63ff 0%, #3a2ea7 100%);
+  color: #fff;
+  font-weight: 600;
+  padding: 14px 24px;
+  font-size: 1.1rem;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 0 16px #6c63ff55;
+  letter-spacing: 1px;
+}
+.code-editor-textarea {
+  width: 100%;
+  min-height: 260px;
+  background: transparent;
+  color: #fff;
+  font-family: "Fira Mono", "Consolas", "Menlo", monospace;
+  font-size: 1.1rem;
+  border: none;
+  outline: none;
+  padding: 24px;
+  resize: vertical;
+  box-shadow: none;
+}
+
+.dashboard-section {
+  color: #fff;
+  background: rgba(30, 30, 60, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 0 24px #6c63ff33, 0 2px 16px #000a;
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  margin-top: 32px;
+  text-align: left;
+}
+.dashboard-section h2 {
+  color: #6c63ff;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.dashboard-section p {
+  color: #b0b3c7;
+  font-size: 1.1rem;
+}

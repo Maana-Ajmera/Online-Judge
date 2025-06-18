@@ -3,13 +3,12 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
-const config = require('../config/config');
 
 const router = express.Router();
 
 // Generate JWT Token
 const generateToken = (userId) => {
-    return jwt.sign({ userId }, config.jwtSecret, { expiresIn: '7d' });
+    return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
 
 // Register User
@@ -24,7 +23,10 @@ router.post('/register', [
         .withMessage('Please enter a valid email'),
     body('password')
         .isLength({ min: 6 })
-        .withMessage('Password must be at least 6 characters long')
+        .withMessage('Password must be at least 6 characters long'),
+    body('leetcodeProfile')
+        .notEmpty()
+        .withMessage('LeetCode Profile is required'),
 ], async (req, res) => {
     try {
         // Check for validation errors
@@ -36,7 +38,7 @@ router.post('/register', [
             });
         }
 
-        const { username, email, password } = req.body;
+        const { username, email, password, leetcodeProfile } = req.body;
 
         // Check if user already exists
         const existingUser = await User.findOne({ email: req.body.email });
@@ -51,7 +53,8 @@ router.post('/register', [
         const user = new User({
             username,
             email,
-            password
+            password,
+            leetcodeProfile
         });
 
         await user.save();

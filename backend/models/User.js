@@ -30,6 +30,11 @@ const userSchema = new mongoose.Schema({
     isActive: {
         type: Boolean,
         default: true
+    },
+    leetcodeProfile: {
+        type: String,
+        trim: true,
+        required: true
     }
 }, {
     timestamps: true

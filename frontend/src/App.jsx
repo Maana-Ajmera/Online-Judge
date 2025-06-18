@@ -9,7 +9,7 @@ import axios from "axios";
 import "./App.css";
 
 // Components
-import Navbar from "./components/Navbar";
+
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import Dashboard from "./components/Dashboard";
@@ -27,7 +27,6 @@ function App() {
     <AuthProvider>
       <Router>
         <div className="App">
-          <Navbar />
           <main className="container">
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />

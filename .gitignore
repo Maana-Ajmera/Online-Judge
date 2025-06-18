@@ -1,7 +1,7 @@
 # Node modules
 backend/node_modules/
 frontend/node_modules/
-
+backend/config/
 # Build output (frontend)
 frontend/dist/
 frontend/.vite/
@@ -22,4 +22,6 @@ backend/.env
 frontend/.env
 
 # Script for dropping index (can be deleted after use)
-backend/drop-username-index.js 
+backend/drop-username-index.js
+
+backend/config.env 
