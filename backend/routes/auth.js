@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { body, validationResult } = require('express-validator');
 const User = require('../models/User');
 const { auth } = require('../middleware/auth');
+const { OAuth2Client } = require('google-auth-library');
 
 const router = express.Router();
 
@@ -10,6 +11,8 @@ const router = express.Router();
 const generateToken = (userId) => {
     return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: '7d' });
 };
+
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // Register User
 router.post('/register', [
@@ -146,6 +149,38 @@ router.post('/logout', auth, async (req, res) => {
     } catch (error) {
         console.error('Logout error:', error);
         res.status(500).json({ message: 'Server error' });
+    }
+});
+
+// Google Login/Register
+router.post('/google', async (req, res) => {
+    const { credential } = req.body;
+    try {
+        const ticket = await client.verifyIdToken({
+            idToken: credential,
+            audience: process.env.GOOGLE_CLIENT_ID,
+        });
+        const payload = ticket.getPayload();
+        let user = await User.findOne({ email: payload.email });
+        if (!user) {
+            user = new User({
+                username: payload.name.replace(/\s+/g, '_'),
+                email: payload.email,
+                googleId: payload.sub,
+                leetcodeProfile: '', // Optional, can be filled later
+                password: Math.random().toString(36).slice(-8) // Random password, not used
+            });
+            await user.save();
+        }
+        const token = generateToken(user._id);
+        res.json({
+            message: 'Google login successful',
+            token,
+            user: user.toJSON()
+        });
+    } catch (err) {
+        console.error('Google login error:', err);
+        res.status(401).json({ message: 'Invalid Google token' });
     }
 });
 

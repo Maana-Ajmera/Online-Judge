@@ -3,10 +3,13 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
 import { Toaster } from "react-hot-toast";
-
+import { GoogleOAuthProvider } from "@react-oauth/google";
+const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
-    <Toaster />
+    <GoogleOAuthProvider clientId={clientId}>
+      <App />
+      <Toaster />
+    </GoogleOAuthProvider>
   </StrictMode>
 );

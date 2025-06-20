@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-hot-toast";
 import "./Auth.css";
+import GoogleLoginButton from "./GoogleLoginButton";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -204,6 +205,10 @@ const Register = () => {
             {isSubmitting ? "Creating Account..." : "Register"}
           </button>
         </form>
+
+        <div style={{ margin: "16px 0" }}>
+          <GoogleLoginButton />
+        </div>
 
         <div className="auth-footer">
           <p>

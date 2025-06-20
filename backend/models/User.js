@@ -19,8 +19,11 @@ const userSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true,
         minlength: 6
+    },
+    googleId: {
+        type: String,
+        default: null
     },
     role: {
         type: String,
@@ -34,7 +37,7 @@ const userSchema = new mongoose.Schema({
     leetcodeProfile: {
         type: String,
         trim: true,
-        required: true
+        required: false
     }
 }, {
     timestamps: true
@@ -42,7 +45,7 @@ const userSchema = new mongoose.Schema({
 
 // Hash password before saving
 userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) return next();
+    if (!this.isModified('password') || this.googleId) return next();
 
     try {
         const salt = await bcrypt.genSalt(10);
